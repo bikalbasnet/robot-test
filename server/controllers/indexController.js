@@ -1,15 +1,22 @@
+import {app} from '../index'
+import commandQueue from '../queue/commandQueue'
+
 export function place(req, res) {
-    res.send('Not Implemented yet.');
+    const param = req.body
+    commandQueue('place', {
+        x: param.x,
+        y: param.y,
+        direction: param.direction
+    })
 }
 
 export function move(req, res) {
-    res.send('Not Implemented yet.');
+    commandQueue('move')
 }
 
 export function rotate(req, res) {
-    res.send('Not Implemented yet.');
-}
-
-export function report(req, res) {
-    res.send('Not Implemented yet.');
+    const param = req.body
+    commandQueue('rotate', {
+        direction: param.direction
+    })
 }

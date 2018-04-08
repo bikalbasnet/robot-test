@@ -1,8 +1,9 @@
 import express from 'express'
-import {place, move, rotate, report} from '../controllers/indexController'
+import {place, move, rotate} from '../controllers/indexController'
 
 const router = express.Router()
 
+// TODO: Validation
 router.get("/", (req, res) => {
     res.json({msg: 'ok'})
 })
@@ -11,6 +12,5 @@ router.get("/", (req, res) => {
 router.put("/place", place)
 router.post('/move', move)
 router.post('/rotate', rotate)
-router.get('/report', report)
 
 export default router
