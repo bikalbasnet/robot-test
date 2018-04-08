@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import 'reset-css';
-import './App.css';
-
-const styles = {
-  root: {
-    backgroundColor: 'red',
-  },
-}
-
+import './App.scss';
+import RobotTable from './components/RobotTable'
+import RobotControls from './components/RobotControls'
 
 class App extends Component {
   constructor() {
@@ -20,12 +15,16 @@ class App extends Component {
   }
 
   render() {
-    return <div class="robot">
-      <h1>Robot Simulator</h1>
-      <section class="table">
-        <h2>Table</h2>
+    const {x, y, direction} = this.state
+
+    return <div className="simulator">
+      <section className="table-holder">
+        <h2 className="holder-title">Robot in the table</h2>
+        <RobotTable x={this.state.x} y={this.state.y} direction={this.state.direction}/>
       </section>
-      <section class="controller">
+      <section className="controls-holder">
+        <h2 className="holder-title">Control dashboard</h2>
+        <RobotControls />
       </section>
     </div>
   }
