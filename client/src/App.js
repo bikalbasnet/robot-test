@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import 'reset-css';
 import './App.css';
 
+const styles = {
+  root: {
+    backgroundColor: 'red',
+  },
+}
+
+
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      x: null,
+      y: null,
+      direction: null,
+    }
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return <div class="robot">
+      <h1>Robot Simulator</h1>
+      <section class="table">
+        <h2>Table</h2>
+      </section>
+      <section class="controller">
+      </section>
+    </div>
   }
 }
 
