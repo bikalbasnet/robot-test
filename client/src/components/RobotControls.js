@@ -49,13 +49,25 @@ class RobotControls extends Component {
         </select>
       </p>
       <p>
-        <button onClick={this.placeRobot}>Place Robot</button>
+        <button className="primary-button" onClick={this.placeRobot}>Place Robot</button>
       </p>
       <p>
-        <button onClick={this.moveRobot}>Move</button>
-        <button onClick={() => this.rotateRobot('left')}>Roate left</button>
-        <button onClick={() => this.rotateRobot('right')}>Rotate Right</button>
-        <button onClick={this.report}>Report</button>
+        <button
+          className="secondary-button"
+          onClick={this.moveRobot}
+        >Move</button>
+        <button
+          className="secondary-button"
+          onClick={() => this.rotateRobot('left')}
+        >Roate left</button>
+        <button
+          className="secondary-button"
+          onClick={() => this.rotateRobot('right')}
+          >Rotate Right</button>
+        <button
+          className="secondary-button"
+          onClick={this.report}
+        >Report</button>
       </p>
     </div>
   }
