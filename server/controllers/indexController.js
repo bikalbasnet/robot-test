@@ -1,6 +1,6 @@
 import {app} from '../index'
 import commandQueue from '../queue/commandQueue'
-import {isValidParameters, hasRobotBeenPlaced} from '../models/robot'
+import {X, Y, DIRECTION, isValidParameters, hasRobotBeenPlaced} from '../models/robot'
 
 /**
  * Place the Robot's position on queue if valid
@@ -55,4 +55,12 @@ export function rotate(req, res) {
     })
 
     res.json({msg: 'ok'})
+}
+
+export function report(req, res) {
+    res.json({
+        x: X,
+        y: Y,
+        direction: DIRECTION
+    })
 }

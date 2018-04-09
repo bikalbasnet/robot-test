@@ -9,7 +9,12 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      socket: socketIOClient("http://127.0.0.1:4001")
+      socket: socketIOClient(process.env.REACT_APP_API_URL,
+        {
+          transports: ['websocket', 'polling'],
+          "forceNew": true
+        }
+      )
     }
   }
 
