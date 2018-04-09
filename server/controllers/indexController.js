@@ -25,7 +25,7 @@ export function place(req, res) {
         direction: param.direction
     })
 
-    res.json({msg: 'ok'})
+    res.json({msg: 'command placed'})
 }
 
 /**
@@ -41,7 +41,7 @@ export function move(req, res) {
 
     commandQueue('move')
 
-    res.json({msg: 'ok'})
+    res.json({msg: 'command placed'})
 }
 
 export function rotate(req, res) {
@@ -54,7 +54,7 @@ export function rotate(req, res) {
         direction: param.direction
     })
 
-    res.json({msg: 'ok'})
+    res.json({msg: 'command placed'})
 }
 
 export function report(req, res) {

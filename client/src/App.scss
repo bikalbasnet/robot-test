@@ -67,3 +67,22 @@ body {
       transform: rotate(90deg);
     }
 }
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.console {
+  width: 500px;
+  height: 400px;
+  background: $primary-color-dark;
+  color: $primary-color-text;
+  font-size: 15px;
+  padding: 10px;
+  overflow: scroll;
+  margin-top: 10px;
+
+  .console-line {
+    margin-bottom: 10px
+  }
+}

@@ -1,7 +1,7 @@
 const apiEndPointUrl = process.env.REACT_APP_API_URL
 
 export function placeRobot(x, y, direction) {
-    fetch(apiEndPointUrl + 'place/', {
+    return fetch(apiEndPointUrl + 'place/', {
         method: 'PUT',
         body: JSON.stringify({
             x: x,
@@ -13,24 +13,20 @@ export function placeRobot(x, y, direction) {
         })
     })
     .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
 }
 
 export function moveRobot() {
-    fetch(apiEndPointUrl + 'move/', {
+    return fetch(apiEndPointUrl + 'move/', {
         method: 'POST',
         headers: new Headers({
             'Content-Type': 'application/json'
         })
     })
     .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
 }
 
 export function rotateRobot(direction) {
-    fetch(apiEndPointUrl + 'rotate', {
+    return fetch(apiEndPointUrl + 'rotate', {
         method: 'POST',
         body: JSON.stringify({
             direction: direction
@@ -40,8 +36,6 @@ export function rotateRobot(direction) {
         })
     })
         .then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
 }
 
 export function report() {

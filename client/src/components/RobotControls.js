@@ -10,13 +10,26 @@ class RobotControls extends Component {
     this.state = {
       x: 0,
       y: 0,
-      direction: 'north'
+      direction: 'north',
+      commands: []
     }
 
     this.placeRobot = this.placeRobot.bind(this)
+    this.renderControls = this.renderControls.bind(this)
+    this.report = this.report.bind(this)
+    this.logCommand = this.logCommand.bind(this)
+    this.moveRobot = this.moveRobot.bind(this)
+    this.rotateRobot = this.rotateRobot.bind(this)
   }
 
   render() {
+    return <div>
+      {this.renderControls()}
+      {this.renderConsole()}
+    </div>
+  }
+
+  renderControls() {
     return <div className="controls">
       <p>
         <label>X position</label>
@@ -39,12 +52,23 @@ class RobotControls extends Component {
         <button onClick={this.placeRobot}>Place Robot</button>
       </p>
       <p>
-        <button onClick={moveRobot}>Move</button>
-        <button onClick={() => rotateRobot('left')}>Roate left</button>
-        <button onClick={() => rotateRobot('right')}>Rotate Right</button>
+        <button onClick={this.moveRobot}>Move</button>
+        <button onClick={() => this.rotateRobot('left')}>Roate left</button>
+        <button onClick={() => this.rotateRobot('right')}>Rotate Right</button>
         <button onClick={this.report}>Report</button>
       </p>
     </div>
+  }
+
+  renderConsole() {
+    return <section>
+      <h2>Console</h2>
+      <div className='console'>
+        {this.state.commands.map((cmd, i) => {
+          return <p key={'cmd' + i} className='console-line'>{cmd}</p>
+        })}
+      </div>
+    </section>
   }
 
   placeRobot() {
@@ -52,12 +76,36 @@ class RobotControls extends Component {
       parseInt(this.state.x),
       parseInt(this.state.y),
       this.state.direction
-    )
+    ).then(res => {
+        this.logCommand('place ' + res.msg)
+    })
+  }
+
+  moveRobot() {
+    moveRobot().then(res => {
+      this.logCommand('move ' + res.msg)
+    })
+  }
+
+  rotateRobot(direction) {
+    rotateRobot(direction).then(res => {
+        this.logCommand('rotate ' + direction + ' ' + res.msg)
+    })
   }
 
   report() {
     report().then((res) => {
-      console.log(res)
+      this.logCommand('report' + ' ' + JSON.stringify(res))
+    })
+  }
+
+  /**
+   * Logs the commands for console UI
+   * @param string log
+   */
+  logCommand(log) {
+    this.setState({
+      commands: [log, ...this.state.commands]
     })
   }
 }

@@ -51,7 +51,7 @@ class RobotTable extends Component {
    * render the robot on x,y and direction or just ignore if its not set
    * @return {[type]} [description]
    */
-  renderRobot () {
+  renderRobot() {
     const {x, y, direction} = this.state
 
     // Robot is not placed yet
