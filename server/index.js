@@ -6,7 +6,10 @@ import index from './routes/index'
 import kue from 'kue'
 import {X, Y, DIRECTION, setX, setY, setDirection, move, rotate, isValidCoordinate} from './models/robot'
 
+require('dotenv').config()
+
 const app = express()
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -23,7 +26,13 @@ const io = socketIo(server, {
 })
 app.io = io
 
-const queue = kue.createQueue()
+// Create Queue 
+const queue = kue.createQueue({
+    redis: {
+        port: process.env.REDIS_PORT || 6379,
+        host: process.env.REDIS_HOST || redis,
+  }
+})
 app.queue = queue
 
 // Process Queue
@@ -57,5 +66,3 @@ const port = process.env.PORT || 4001
 server.listen(port, () => console.log(`Listening on port ${port}`))
 
 export {app}
-
-export default app

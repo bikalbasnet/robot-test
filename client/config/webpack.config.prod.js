@@ -154,7 +154,7 @@ module.exports = {
             },
           },
           {
-            test: /\.css$/,
+            test: /\.scss$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
