@@ -1,6 +1,6 @@
 import {app} from '../index'
 import commandQueue from '../queue/commandQueue'
-import {X, Y, DIRECTION, isValidParameters, hasRobotBeenPlaced} from '../models/robot'
+import {X, Y, DIRECTION, isValidPlacementParameters, hasRobotBeenPlaced} from '../models/robot'
 
 /**
  * Place the Robot's position on queue if valid
@@ -15,7 +15,7 @@ export function place(req, res) {
     const y = param.y
     const direction = param.direction
 
-    if (!isValidParameters(x, y, direction)) {
+    if (!isValidPlacementParameters(x, y, direction)) {
         return res.status(400).json({msg: 'Invalid parameters'})
     }
 
@@ -50,6 +50,11 @@ export function rotate(req, res) {
     }
 
     const param = req.body
+
+    if (param.direction !== 'left' && param.direction !== 'right') {
+        return res.status(400).json({msg: 'Invalid parameters'})
+    }
+
     commandQueue('rotate', {
         direction: param.direction
     })

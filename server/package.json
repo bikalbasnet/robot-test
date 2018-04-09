@@ -4,15 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2",
+    "test": "mocha --require babel-register -- ./**/*.*test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-rewire": "^1.1.0",
+    "babel-register": "^6.26.0",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "chai-spies": "^1.0.0",
     "express": "^4.16.3",
     "kue": "^0.11.6",
-    "socket.io": "^2.1.0"
+    "socket.io": "^2.1.0",
+    "stub": "^0.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

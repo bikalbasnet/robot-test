@@ -24,7 +24,7 @@ export function setDirection(direction) {
  * @param direction
  * @return {Boolean}
  */
-export function isValidParameters(x, y, direction) {
+export function isValidPlacementParameters(x, y, direction) {
     if (directions.indexOf(direction) < 0) {
         return false
     }
