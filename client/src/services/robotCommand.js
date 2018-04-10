@@ -44,3 +44,10 @@ export function report() {
     })
     .then(res => res.json())
 }
+
+export function removeRobot() {
+    return fetch(apiEndPointUrl + 'remove', {
+        method: 'POST'
+    })
+    .then(res => res.json())
+}

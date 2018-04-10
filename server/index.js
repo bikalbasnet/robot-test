@@ -52,6 +52,11 @@ queue.process('commands-queue', function(job, done) {
         case 'rotate':
             rotate(commandArgs.direction)
         break;
+        case 'remove':
+            setX(null)
+            setY(null)
+            setDirection(null)
+        break;
     }
 
     io.sockets.emit('commandForRobot', {

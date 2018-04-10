@@ -7,6 +7,12 @@ let should = chai.should()
 chai.use(chaiHttp)
 
 describe('When robot was not placed', () => {
+    beforeEach(() => {
+        setX(null)
+        setY(null)
+        setDirection(null)
+     })
+
     it('it should not place `move` command' , (done) => {
         chai.request(app)
             .post('/move')
@@ -27,6 +33,18 @@ describe('When robot was not placed', () => {
                 res.body.should.be.a('object');
                 res.body.should.have.property('msg');
                 res.body.msg.should.be.eql('There is no robot to rotate')
+              done();
+            });
+    })
+
+     it('it should not remove on `remove` command' , (done) => {
+        chai.request(app)
+            .post('/remove')
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.be.a('object');
+                res.body.should.have.property('msg');
+                res.body.msg.should.be.eql('There is no robot in the table')
               done();
             });
     })
@@ -113,7 +131,7 @@ describe('When robot may have been placed', () => {
 })
 
 describe('When robot has been placed', () => {
-    before(() => {
+    beforeEach(() => {
         setX('3')
         setY('4')
         setDirection('east')
@@ -177,4 +195,18 @@ describe('When robot has been placed', () => {
           done();
         });
     })
+
+    it('it should remove robot on `remove` command' , (done) => {
+    chai.request(app)
+        .post('/remove')
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.be.a('object');
+            res.body.should.have.property('msg');
+            res.body.msg.should.be.eql('Robot Removed')
+          done();
+        });
+    })
+
 })

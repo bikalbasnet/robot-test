@@ -1,6 +1,6 @@
-export let X
-export let Y
-export let DIRECTION
+export let X = null
+export let Y = null
+export let DIRECTION = null
 
 export const directions = ['north', 'east', 'south', 'west']
 export const maxCoordinate = 5
@@ -94,8 +94,8 @@ export function isValidCoordinate (coordinate) {
  */
 export function hasRobotBeenPlaced() {
     if (
-        typeof X === 'undefined' ||
-        typeof Y === 'undefined' ||
+        X === null ||
+        Y === null ||
         directions.indexOf(DIRECTION) < 0
     ){
 

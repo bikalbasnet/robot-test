@@ -4,9 +4,9 @@ import {X, Y, DIRECTION, isValidPlacementParameters, hasRobotBeenPlaced} from '.
 
 /**
  * Place the Robot's position on queue if valid
- * @param  {[type]} req [description]
- * @param  {[type]} res [description]
- * @return {[type]}     [description]
+ * @param  req
+ * @param  res
+ * @return
  */
 export function place(req, res) {
     const param = req.body
@@ -30,9 +30,9 @@ export function place(req, res) {
 
 /**
  * Changes robot's X or Y Cordinate based on the direction its facing
- * @param  {[type]} req [description]
- * @param  {[type]} res [description]
- * @return {[type]}     [description]
+ * @param  req
+ * @param  res
+ * @return
  */
 export function move(req, res) {
     if (!hasRobotBeenPlaced()) {
@@ -68,4 +68,20 @@ export function report(req, res) {
         y: Y,
         direction: DIRECTION
     })
+}
+
+/**
+ * Removes the robot from the table
+ * @param  req
+ * @param  res
+ * @return
+ */
+export function remove(req, res) {
+    if (!hasRobotBeenPlaced()) {
+        return res.status(400).json({msg: 'There is no robot in the table'})
+    }
+
+    commandQueue('remove')
+
+    res.json({msg: 'Robot Removed'})
 }

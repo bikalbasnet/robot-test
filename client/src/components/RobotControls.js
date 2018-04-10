@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'whatwg-fetch'
-import {placeRobot, moveRobot, rotateRobot, report} from '../services/robotCommand'
+import {placeRobot, moveRobot, rotateRobot, report, removeRobot} from '../services/robotCommand'
 
 const apiEndPointUrl = process.env.REACT_APP_API_URL
 
@@ -20,6 +20,7 @@ class RobotControls extends Component {
     this.logCommand = this.logCommand.bind(this)
     this.moveRobot = this.moveRobot.bind(this)
     this.rotateRobot = this.rotateRobot.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   render() {
@@ -68,6 +69,10 @@ class RobotControls extends Component {
           className="secondary-button"
           onClick={this.report}
         >Report</button>
+        <button
+          className="secondary-button"
+          onClick={this.remove}
+        >Remove</button>
       </p>
     </div>
   }
@@ -107,7 +112,13 @@ class RobotControls extends Component {
 
   report() {
     report().then((res) => {
-      this.logCommand('report' + ' ' + JSON.stringify(res))
+      this.logCommand('report ' + ' ' + JSON.stringify(res))
+    })
+  }
+
+  remove() {
+    removeRobot().then((res) => {
+      this.logCommand('remove ' + res.msg)
     })
   }
 
